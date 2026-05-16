@@ -5,6 +5,10 @@ import (
 	"logger/models"
 )
 
+var (
+	WriteDataErr = errors.New("Не удалось записать данные")
+)
+
 func SendLogs(logs *models.LogsTable) error {
 	_, err := dataBase.Exec(`
 	insert into logs (
@@ -20,7 +24,7 @@ func SendLogs(logs *models.LogsTable) error {
 	`, logs.Level, logs.Message, logs.Created_at)
 
 	if err != nil {
-		return errors.New("Не удалось записать данные: " + err.Error())
+		return WriteDataErr
 	}
 
 	return nil

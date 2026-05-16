@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -13,6 +14,12 @@ import (
 var (
 	dataBase   *sql.DB
 	driverName = "postgres"
+)
+
+var (
+	DB_TryConnErr = errors.New("Ошибка подключения")
+	DB_ConnErr    = errors.New("Ошибка подключения к БД")
+	CrTableErr    = errors.New("Не удалось создать таблицу")
 )
 
 func ConnectionAttempt(dsn string) error {
@@ -28,17 +35,17 @@ func ConnectionAttempt(dsn string) error {
 			break
 		}
 
-		log.Printf("Ошибка подключения: \"%v\"\n", err.Error())
+		log.Printf("%v\n", DB_TryConnErr.Error())
 		time.Sleep(2 * time.Second)
 	}
 
 	if err != nil {
-		log.Printf("Ошибка подключения к БД: \"%v\"", err.Error())
-		return err
+		log.Printf("%v: \"%v\"\n", DB_ConnErr.Error(), err.Error())
+		return DB_ConnErr
 	}
 
 	dataBase = db
-	log.Printf("Подключение к БД выполнено успешно!")
+	log.Printf("Подключение к БД выполнено успешно!\n")
 	return nil
 }
 
@@ -75,6 +82,9 @@ func createTable() error {
 	created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 	)
 	`)
+	if err != nil {
+		return CrTableErr
+	}
 
-	return err
+	return nil
 }
