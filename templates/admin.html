@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель Логгера</title>
+    <!-- Подключаем наш разделенный файл стилей -->
+    <link rel="stylesheet" href="./static/css/styles.css?v=2">
+</head>
+<body>
+
+    <h1>Админ-панель Системы Логирования GOLOGIT</h1>
+
+    <div class="control-panel">
+        <!-- Кнопка обновления -->
+        <form action="" method="GET">
+            <button type="submit" class="btn-primary">Обновить данные</button>
+        </form>
+
+        <!-- Вторая кнопка: Удалить все данные (пока без действия) -->
+        <form action="" method="POST" onsubmit="return false;">
+            <button type="submit" class="btn-danger">Удалить все данные</button>
+        </form>
+    </div>
+
+    <h2>Логи в системе (Страница {{.CurrentPage}})</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 20%;">Время события</th>
+                <th style="width: 15%;">Уровень</th>
+                <th style="width: 65%;">Сообщение лога</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{if .LogsTable}}
+                {{range .LogsTable}}
+                <tr>
+                    <td class="time-cell">{{.Created_at.Format "02.01.2006 15:04:05"}}</td>
+                    <td>
+                        {{if eq .Level "debug"}}
+                            <span class="level level-debug">debug</span>
+                        {{else if eq .Level "info"}}
+                            <span class="level level-info">info</span>
+                        {{else if eq .Level "warning"}}
+                            <span class="level level-warning">warning</span>
+                        {{else if eq .Level "error"}}
+                            <span class="level level-error">error</span>
+                        {{else if eq .Level "fatal"}}
+                            <span class="level level-fatal">fatal</span>
+                        {{else}}
+                            <span class="level">{{.Level}}</span>
+                        {{end}}
+                    </td>
+                    <td class="message-cell">{{.Message}}</td>
+                </tr>
+                {{end}}
+            {{else}}
+                <tr>
+                    <td colspan="3" style="text-align: center; padding: 40px;">
+                        <div class="empty-state">
+                            <p>📭 Нет записей логов</p>
+                            <p style="font-size: 13px; margin-top: 8px; color: #6c757d;">
+                                Логи будут отображаться здесь после их появления в системе
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            {{end}}
+        </tbody>
+    </table>
+
+    <!-- БЛОК СТРЕЛОЧЕК ПАГИНАЦИИ -->
+    {{if .LogsTable}}
+    <div class="pagination-container">
+        {{if gt .CurrentPage 1}}
+            <a href="/admin-panel?page={{.PrevPage}}" class="pagination-link">&larr; Назад</a>
+        {{end}}
+
+        <span class="page-info">Страница <strong>{{.CurrentPage}}</strong></span>
+
+        <!-- Показываем кнопку "Вперед" только если страница заполнена целиком (например, вернулось 10 логов) -->
+        {{if eq (len .LogsTable) 10}}
+            <a href="/admin-panel?page={{.NextPage}}" class="pagination-link">Вперед &rarr;</a>
+        {{end}}
+    </div>
+    {{end}}
+
+</body>
+</html>

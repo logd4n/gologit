@@ -1,0 +1,181 @@
+/* 1. Общие стили для всей страницы (Темная тема) */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #1e1e2e; /* Глубокий темный фон */
+    color: #cdd6f4;            /* Светлый текст */
+    max-width: 1200px;         /* Ширина контента */
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    color: #f5c2e7;
+    border-bottom: 2px solid #313244;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #bac2de;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+/* 2. Панель управления и кнопки */
+.control-panel {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.btn-primary, .btn-danger {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Кнопка обновления (зеленая) */
+.btn-primary {
+    background-color: #252538;
+    color: #a6e3a1;
+    border: 1px solid #a6e3a1;
+}
+
+.btn-primary:hover {
+    background-color: #a6e3a1;
+    color: #11111b;
+    box-shadow: 0 0 10px rgba(166, 227, 161, 0.4);
+}
+
+/* Кнопка удаления (красная) */
+.btn-danger {
+    background-color: #252538;
+    color: #f38ba8;
+    border: 1px solid #f38ba8;
+}
+
+.btn-danger:hover {
+    background-color: #f38ba8;
+    color: #11111b;
+    box-shadow: 0 0 10px rgba(243, 139, 168, 0.4);
+}
+
+/* 3. Стили таблицы (чтобы она растянулась и стала читаемой) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #252538;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+}
+
+th {
+    background-color: #313244;
+    color: #cdd6f4;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+tr {
+    border-bottom: 1px solid #313244;
+    transition: background-color 0.2s ease;
+}
+
+tr:last-child {
+    border-bottom: none;
+}
+
+tr:hover {
+    background-color: #2e2e44; /* Подсветка строки при наведении */
+}
+
+/* 4. Стили для текста внутри таблицы */
+.time-cell {
+    color: #a6adc8;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.message-cell {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 14px;
+    color: #e6e9ef;
+}
+
+/* 5. Красивые бейджи для уровней логов */
+.level {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.level-info {
+    background-color: rgba(137, 180, 250, 0.15);
+    color: #89b4fa;
+}
+
+.level-debug {
+    background-color: rgba(148, 226, 213, 0.15);
+    color: #94e2d5;
+}
+
+.level-warning {
+    background-color: rgba(249, 226, 175, 0.15);
+    color: #f9e2af;
+}
+
+.level-error {
+    background-color: rgba(243, 139, 168, 0.15);
+    color: #f38ba8;
+}
+
+.level-fatal {
+    background-color: rgba(235, 160, 172, 0.3);
+    color: #eba0ac;
+}
+
+/* 6. Блок пагинации (стрелочки) */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.pagination-link {
+    background-color: #252538;
+    color: #a6e3a1;
+    border: 1px solid #a6e3a1;
+    padding: 8px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.pagination-link:hover {
+    background-color: #a6e3a1;
+    color: #11111b;
+}
+
+.page-info {
+    color: #bac2de;
+    font-size: 14px;
+}
