@@ -113,5 +113,7 @@ func ReadMessages() error {
 	}()
 
 	wg.Wait()
+
+	log.Printf("\n\nLOGGER IS ENDING!")
 	return nil
 }
