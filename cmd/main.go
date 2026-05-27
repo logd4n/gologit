@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"logger/adminpanel"
 	"logger/database"
 	"logger/rabbitmq"
 )
@@ -14,10 +15,12 @@ func main() {
 
 	log.Printf("LOGGER IS RUNNING!\n\n")
 
-	err = rabbitmq.ReadMessages()
-	if err != nil {
-		log.Printf("Ошибка получения сообщения: %v", err.Error())
-	}
+	go func() {
+		err = rabbitmq.ReadMessages()
+		if err != nil {
+			log.Printf("Ошибка получения сообщения: %v", err.Error())
+		}
+	}()
 
-	log.Printf("\n\nLOGGER IS ENDING!")
+	adminpanel.StartServer()
 }
