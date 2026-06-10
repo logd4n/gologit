@@ -40,11 +40,25 @@ func StartServer() {
 
 	mux := http.NewServeMux()
 
+	//CSS handler
 	mux.Handle(
 		"/static/css/",
 		http.StripPrefix(
 			"/static/css/",
 			http.FileServer(http.Dir(filepath.Join(rootDir, "templates", "static", "css")))))
+
+	//IMG handler
+	mux.Handle(
+		"/static/img/",
+		http.StripPrefix(
+			"/static/img/",
+			http.FileServer(
+				http.Dir(filepath.Join(
+					rootDir, "templates", "static", "img",
+				)),
+			),
+		),
+	)
 
 	mux.HandleFunc("/", notFoundHandler)
 	mux.HandleFunc("/{$}", redirectToPanel)
