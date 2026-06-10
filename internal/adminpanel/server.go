@@ -32,7 +32,6 @@ func StartServer() {
 	}
 
 	getAdminProfile()
-	log.Printf("%s\n%s\n", user_admin, pass_admin)
 
 	err = getAdminTemplate()
 	if err != nil {
