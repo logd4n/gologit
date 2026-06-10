@@ -71,7 +71,7 @@ func panelHandler(w http.ResponseWriter, r *http.Request) {
 func requierAuth(w http.ResponseWriter, r *http.Request) error {
 	username, password, ok := r.BasicAuth()
 	if !ok || username != user_admin || password != pass_admin {
-		w.Header().Set("WWW-Authenticate", `Basic realm="Gologit login"`)
+		w.Header().Set("WWW-Authenticate", `Basic realm="Gologit Area"`)
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 		return AuthErr
 	}
@@ -80,9 +80,11 @@ func requierAuth(w http.ResponseWriter, r *http.Request) error {
 }
 
 func logoutHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("WWW-Authenticate", `Basic realm="Gologit logout"`)
+	w.Header().Set("WWW-Authenticate", `Basic realm="Gologit Area"`)
 	w.WriteHeader(http.StatusUnauthorized)
 	w.Write([]byte("Вы успешно вышли из системы!"))
+
+	//redirectToPanel(w, r)
 }
 
 func notFoundHandler(w http.ResponseWriter, r *http.Request) {
