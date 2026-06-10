@@ -28,12 +28,16 @@ h2 {
     margin-bottom: 30px;
 }
 
-.btn-primary, .btn-danger {
+/* Расширяем групповой селектор для новой кнопки */
+.btn-primary, .btn-danger, .btn-secondary {
     padding: 10px 20px;
     font-size: 14px;
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
+    text-decoration: none; /* Убирает подчеркивание у ссылки */
+    display: inline-flex;  /* Центрирует текст внутри ссылки */
+    align-items: center;
     transition: all 0.2s ease;
 }
 
@@ -61,6 +65,19 @@ h2 {
     background-color: #f38ba8;
     color: #11111b;
     box-shadow: 0 0 10px rgba(243, 139, 168, 0.4);
+}
+
+/* Кнопка выхода (желтая/песочная) */
+.btn-secondary {
+    background-color: #252538;
+    color: #f9e2af;
+    border: 1px solid #f9e2af;
+}
+
+.btn-secondary:hover {
+    background-color: #f9e2af;
+    color: #11111b;
+    box-shadow: 0 0 10px rgba(249, 226, 175, 0.4);
 }
 
 /* 3. Стили таблицы (чтобы она растянулась и стала читаемой) */

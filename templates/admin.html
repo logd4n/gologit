@@ -5,22 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Админ-панель Логгера</title>
     <!-- Подключаем наш разделенный файл стилей -->
-    <link rel="stylesheet" href="./static/css/styles.css?v=2">
+    <link rel="stylesheet" href="./static/css/styles.css?v=3">
 </head>
 <body>
 
     <h1>Админ-панель Системы Логирования GOLOGIT</h1>
 
-    <div class="control-panel">
+    <!-- display: flex выстраивает кнопки в один ряд с отступом gap -->
+    <div class="control-panel" style="display: flex; gap: 10px; align-items: center; margin-bottom: 20px;">
         <!-- Кнопка обновления -->
-        <form action="" method="GET">
+        <form action="" method="GET" style="margin: 0;">
             <button type="submit" class="btn-primary">Обновить данные</button>
         </form>
 
         <!-- Вторая кнопка: Удалить все данные (пока без действия) -->
-        <form action="" method="POST" onsubmit="return false;">
+        <form action="" method="POST" style="margin: 0;" onsubmit="return false;">
             <button type="submit" class="btn-danger">Удалить все данные</button>
         </form>
+
+        <!-- Кнопка: Выйти из системы -->
+        <a href="/admin-panel/logout" class="btn-secondary">
+            Выйти из системы
+        </a>
+
     </div>
 
     <h2>Логи в системе (Страница {{.CurrentPage}})</h2>
