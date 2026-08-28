@@ -207,6 +207,27 @@ func NewMessage(message models.LogMessage) error {
 }
 ```
 
+#### Пример docker-compose:
+``` docker
+  logger:
+    build: ../gologit
+    ports:
+      - "8081:8081"
+    environment:
+      DB_USER: postgres #database user
+      DB_NAME: cookbook #database name
+      DB_PASS: 1234567890 #password for database
+      DB_HOST: postgres-db #database service name
+      DB_PORT: 5432 #port for database operation (host:container)
+      DB_SSLMODE: disable
+      USER_ADMIN: admin
+      PASSWORD_ADMIN: 0000
+    depends_on:
+      - rabbitmq
+      - postgres-db
+      - app
+```
+
 #### Таким образом Вы можете использовать эту простую систему в своих проектах :)
 
 ## ***GO LOG IT!***
