@@ -92,5 +92,5 @@ func notFoundHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func redirectToPanel(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, "http://localhost:8081/admin-panel", http.StatusFound)
+	http.Redirect(w, r, "/admin-panel", http.StatusFound)
 }
